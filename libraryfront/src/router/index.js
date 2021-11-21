@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import LogIn from '../components/LogIn.vue'
-import SingIn from '../components/SingIn.vue'
+import SingUp from '../components/SingUp.vue'
+import Welcome from '../components/Welcome.vue'
 import Profile from '../components/Profile.vue'
 import RHistory from '../components/RHistory.vue'
 import BHistory from '../components/BHistory.vue'
@@ -20,9 +21,14 @@ const routes = [
     component: LogIn
   },
   {
-    path: '/singin',
-    name: 'SingIn',
-    component: SingIn
+    path: '/singup',
+    name: 'SingUp',
+    component: SingUp
+  },
+  {
+    path: '/welcome',
+    name: 'Welcome',
+    component: Welcome
   },
   {
     path: '/profile',
