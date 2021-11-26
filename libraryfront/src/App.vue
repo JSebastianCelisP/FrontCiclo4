@@ -54,7 +54,7 @@ export default {
     verifyActive: function() {
       this.isActive = localStorage.getItem("isActive") || false;
       if (this.isActive == false) {
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Login" });
       } else {
         this.$router.push({ name: "BookS" });
       }
@@ -80,16 +80,16 @@ export default {
     logOut: function() {
       localStorage.clear();
       this.verifyActive();
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "Login" });
     },
     completedLogin: function() {
     },
     completedSignUp: function() {
+      alert("Registro exitoso")
     },
     created: function() {
       this.verifyActive();
-  },
-
+    },
 
   }
   
