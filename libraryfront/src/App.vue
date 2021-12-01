@@ -1,37 +1,31 @@
 <template>
-  <div id="header">
+  <header class="cabecera">
     <div id="logo">
-      <img src="./assets/logoL.png" alt="Logo" />
-      <h4>Library Mision TIC 2022</h4>
+      <img src="./assets/image.png" alt="Logo" />
+      <h3>Librería Misión Tic</h3>
     </div>
-    <div>
+        <div class="usuario">
+        </div>
+    <div class="usuario">
     </div>
     <div class="usuario">
-      <h3 v-on:click="loadLogin" v-if="isActive">LogIn</h3>
-      <h3 v-on:click="loadSignUp" v-if="!isActive">SingUp</h3>
+      <h3 v-on:click="loadLogin" v-if="isAuth">Ingresar</h3>
+      <h3 v-on:click="loadProfile" v-if="isAuth">Perfil</h3>
     </div>
-  </div>
-  
+    <div class="usuario">
+      <h3 v-on:click="loadSignUp" v-if="isAuth">SingUp</h3>
+      <h3 v-on:click="loadLogin" v-if="!isAuth">LogIn</h3>
+    </div>
+  </header>
   <div id="main">
     
     <div id="content">
       <rooter-view 
       v-on:completedLogin="completedLogin"
       v-on:completedSignUp="completedSignUp"
-      v-on:logOut="logOut"
-      v-on:Welcome="loadWelcome">
+      v-on:logOut="logOut">
       </rooter-view>
     </div>
-
-    <div id="aside">
-      <ul>
-        <li>Profile</li>
-        <li>Buy books</li>
-        <li>Rent books</li>
-        <li>Exit</li>
-      </ul>
-    </div>
-  
   </div>
 
   <div id="footer">
@@ -51,10 +45,10 @@ export default {
   components : {},
 
   methods: {
-    verifyActive: function() {
-      this.isActive = localStorage.getItem("isActive") || false;
-      if (this.isActive == false) {
-        this.$router.push({ name: "Login" });
+    verifyAuth: function() {
+      this.isAuth = localStorage.getItem("isAuth") || false;
+      if (this.isAuth == false) {
+        this.$router.push({ name: "LogIn" });
       } else {
         this.$router.push({ name: "BookS" });
       }
@@ -64,9 +58,6 @@ export default {
     },
     loadSignUp: function() {
       this.$router.push({ name: "SingUp" });
-    },
-    loadWelcome: function(){
-      this.$router.push({ name: "Welcome" })
     },
     loadProfile: function() {
       this.$router.push({ name: "Profile" });
@@ -80,7 +71,7 @@ export default {
     logOut: function() {
       localStorage.clear();
       this.verifyActive();
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: "LogIn" });
     },
     completedLogin: function() {
     },
@@ -88,7 +79,7 @@ export default {
       alert("Registro exitoso")
     },
     created: function() {
-      this.verifyActive();
+      this.verifyAuth();
     },
 
   }
@@ -96,54 +87,64 @@ export default {
 }
 </script>
 
-
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    font-family: ;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  font-family:;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
 
-  #app {
-    display: grid;
-    width: 100%;
-    grid-auto-rows: 1fr 8fr 1fr;
-  }
-  #header{
-    display: grid;
-    grid-template-columns: 1fr 6fr 0.5fr;
-    background-color: rgb(17, 0, 92);
-    color:white;
-  }
-  #logo{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-  #header  h4{
-    padding: 6%;
-  }
-  .usuario h3{
-    padding: 20%;
-    cursor: pointer;
-  }
-  #main{
-    display: grid;
-    grid-template-columns: 7fr 1fr;
-  }
+#app {
+  display: grid;
+  grid-template-rows: 1fr 9fr 1fr;
+  width: 100%;
+}
 
+.cabecera {
+  display: grid;
+  min-width: 500px;
+  grid-template-columns: 3fr 7fr 1fr 1fr 1fr;
+  background-color: rgb(92, 2, 2);
+  color: white;
+  transition: 0.5s ease-in;
+}
+#logo{
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+}
 
-  #footer{
-    background-color: rgb(17, 0, 92);
-    color: white;
-  }
-  #footer > h4{
-    margin-top: 1%;
-    text-align: center;
-  }
+#logo img {
+  cursor: pointer;
+  margin: auto;
+  width: 40px;
+}
+#logo h3{
+  margin: 0%;
+  text-align: initial;
+  padding-top: 10%;
+}
+
+.usuario h3 {
+  text-decoration: none;
+  align-content: center;
+  padding-top: 15%;
+  margin-right: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+#footer{
+  background-color: rgb(92, 2, 2);
+  color: white;
+}
+
+#footer h4{
+  text-align: center;
+  margin: 12px;
+}
 
 </style>
