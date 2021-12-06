@@ -1,6 +1,6 @@
 <template>
-    <main id="main">
-        <form class= "formulario-uno" v-on:submit.prevent="processLogin">
+    <main id="login">
+        <form class= "formulario-login" v-on:submit.prevent="processLogin">
             <div>
                 <h2>LOGIN</h2>
                 <input type="text" name="email" id="email" placeholder="E-MAIL">
@@ -9,12 +9,11 @@
             </div>
         </form>
       </main>
-    </main>
 </template>
 
 <script>
 export default {
-  name: 'LogIn',
+  name: 'Login',
 
   data: function(){
     return {
@@ -34,5 +33,8 @@ export default {
 </script>
 
 <style>
-        
+ .formulario-login{
+   height: 450px;
+ }
+
 </style>

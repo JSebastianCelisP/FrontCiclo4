@@ -9,28 +9,27 @@
     <div class="usuario">
     </div>
     <div class="usuario">
-      <h3 v-on:click="loadLogin" v-if="isAuth">Ingresar</h3>
+      <h3 v-on:click="loadWelcome" v-if="!isAuth">HOME</h3>
       <h3 v-on:click="loadProfile" v-if="isAuth">Perfil</h3>
     </div>
     <div class="usuario">
-      <h3 v-on:click="loadSignUp" v-if="isAuth">SingUp</h3>
-      <h3 v-on:click="loadLogin" v-if="!isAuth">LogIn</h3>
+      <h3 v-on:click="loadSignUp" v-if="!isAuth">SING UP</h3>
+      <h3 v-on:click="loadLogin" v-if="isAuth">LOGIN</h3>
     </div>
-  </header>
-  <div id="main">
-    
-    <div id="content">
-      <rooter-view 
+  </header>    
+  <div id="content">
+    <router-view
       v-on:completedLogin="completedLogin"
       v-on:completedSignUp="completedSignUp"
-      v-on:logOut="logOut">
-      </rooter-view>
-    </div>
+      v-on:logOut="logOut"
+    >
+    </router-view>
   </div>
+  
 
-  <div id="footer">
+  <footer id="footer">
       <h4>Contact: library@misiontic2022.mi<br>Number: 1234567890</h4>
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -48,30 +47,42 @@ export default {
     verifyAuth: function() {
       this.isAuth = localStorage.getItem("isAuth") || false;
       if (this.isAuth == false) {
-        this.$router.push({ name: "LogIn" });
+        this.$router.push({ name: "Login" });
       } else {
-        this.$router.push({ name: "BookS" });
+        this.$router.push({ name: "Books" });
       }
     },
     loadLogin: function() {
-      this.$router.push({ name: "LogIn" });
+      this.$router.push({ name: "Login" });
     },
     loadSignUp: function() {
-      this.$router.push({ name: "SingUp" });
+      this.$router.push({ name: "Singup" });
     },
+    loadWelcome: function() {
+      this.$router.push({ name: "Welcome" });
+    },
+
     loadProfile: function() {
       this.$router.push({ name: "Profile" });
     },
     loadBookS: function() {
-      this.$router.push({ name: "BookS" });
+      this.$router.push({ name: "Books" });
     },
     loadBookR: function() {
       this.$router.push({ name: "BookR" });
     },
+    loadBookdetailS: function() {
+      this.$router.push({ name: "Bookdetails" });
+    },
+    loadBookdetailR: function() {
+      this.$router.push({ name: "Bookdetailr" });
+    },
+    loadBookH: function() {
+      this.$router.push({ name: "Bhistory" });
+    },
     logOut: function() {
-      localStorage.clear();
       this.verifyActive();
-      this.$router.push({ name: "LogIn" });
+      this.$router.push({ name: "Login" });
     },
     completedLogin: function() {
     },
@@ -88,10 +99,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Baskerville Old Face";
+  src: url(./fonts/BaskervilleOldFaceV2.ttf) format('truetype');
+}
 * {
   margin: 0;
   padding: 0;
-  font-family:;
+  font-family: "Baskerville Old Face";
+  font-weight: 100;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -101,8 +117,8 @@ export default {
 
 #app {
   display: grid;
-  grid-template-rows: 1fr 9fr 1fr;
-  width: 100%;
+  height: 100%;
+  grid-template-rows: auto; 
 }
 
 .cabecera {
@@ -112,6 +128,7 @@ export default {
   background-color: rgb(92, 2, 2);
   color: white;
   transition: 0.5s ease-in;
+  padding: 7px;
 }
 #logo{
   display: grid;
@@ -126,7 +143,8 @@ export default {
 #logo h3{
   margin: 0%;
   text-align: initial;
-  padding-top: 10%;
+  padding: 5% 0% 5% 0;
+  font-size: 20px;
 }
 
 .usuario h3 {
