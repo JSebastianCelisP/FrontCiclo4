@@ -61,24 +61,11 @@ export default {
     loadWelcome: function() {
       this.$router.push({ name: "Welcome" });
     },
-
-    loadProfile: function() {
-      this.$router.push({ name: "Profile" });
-    },
-    loadBookS: function() {
-      this.$router.push({ name: "Books" });
-    },
-    loadBookR: function() {
-      this.$router.push({ name: "BookR" });
-    },
     loadBookdetailS: function() {
       this.$router.push({ name: "Bookdetails" });
     },
     loadBookdetailR: function() {
       this.$router.push({ name: "Bookdetailr" });
-    },
-    loadBookH: function() {
-      this.$router.push({ name: "Bhistory" });
     },
     logOut: function() {
       this.verifyActive();

@@ -7,7 +7,7 @@
             </div>
         </figure>
         <figure v-on:click="loadBookS">
-            <img src="../assets/bookS.webp" alt="">
+            <img src="../assets/bookS.webp" alt="img">
             <div class="texto">
                 <h3>NEW BOOK</h3>
             </div>
@@ -30,7 +30,30 @@
 <script>
   export default {
     name: 'Welcome',
-  }
+    
+    data:function(){
+        return {
+            isActive : false,
+        };
+    }, 
+    components : {},
+
+    methods: {  
+        loadBookS: function() {
+            this.$router.push({ name: "Books" });
+            },
+        loadBookR: function() {
+            this.$router.push({ name: "Bookr" });
+            },
+        loadBookH: function() {
+            this.$router.push({ name: "Bhistory" });
+            },        
+        loadProfile: function() {
+            this.$router.push({ name: "Profile" });
+    },
+
+        }      
+    }
 </script>
 
 <style>
