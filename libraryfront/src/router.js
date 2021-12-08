@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import App from './App'
 import Login from './components/LogIn.vue'
-import Singup from './components/SingUp.vue'
+import Signup from './components/SignUp.vue'
 import Welcome from './components/Welcome.vue'
 import Profile from './components/Profile.vue'
 import Bhistory from './components/BHistory.vue'
@@ -24,9 +24,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/singup',
-    name: 'Singup',
-    component: Singup
+    path: '/signup',
+    name: 'SignUp',
+    component: Signup
   },
   {
     path: '/welcome',

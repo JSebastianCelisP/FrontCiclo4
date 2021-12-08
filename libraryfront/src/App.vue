@@ -1,20 +1,22 @@
 <template>
   <header class="cabecera">
     <div id="logo">
-      <img src="./assets/image.png" alt="Logo" />
-      <h3>Librería Misión Tic</h3>
+      <img v-on:click="loadWelcome" v-if="isAuth" src="./assets/image.png" alt="Logo" />
+      <h3 v-on:click="loadWelcome" v-if="isAuth" >Librería Misión Tic</h3>
+      <img v-if="!isAuth" src="./assets/image.png" alt="Logo" />
+      <h3 v-if="!isAuth">Librería Misión Tic</h3>
     </div>
-        <div class="usuario">
-        </div>
+      <div class="usuario">
+      </div>
     <div class="usuario">
     </div>
     <div class="usuario">
-      <h3 v-on:click="loadWelcome" v-if="!isAuth">HOME</h3>
-      <h3 v-on:click="loadProfile" v-if="isAuth">Perfil</h3>
+      <h3 v-on:click="loadLogin"   v-if="!isAuth">LOGIN</h3>
+      <h3 v-on:click="loadWelcome" v-if="isAuth">HOME</h3>
     </div>
     <div class="usuario">
-      <h3 v-on:click="loadSignUp" v-if="!isAuth">SING UP</h3>
-      <h3 v-on:click="loadLogin" v-if="isAuth">LOGIN</h3>
+      <h3 v-on:click="loadSignUp"  v-if="!isAuth">SIGN UP</h3>
+      <h3 v-on:click="logOut"      v-if="isAuth">LOGOUT</h3>
     </div>
   </header>    
   <div id="content">
@@ -33,12 +35,13 @@
 </template>
 
 <script>
-export default {
+import jwt_decode from "jwt-decode";
+export default { 
   name: "App",
 
   data:function(){
     return {
-      isActive : false,
+      isAuth : false,
     };
   }, 
   components : {},
@@ -48,40 +51,61 @@ export default {
       this.isAuth = localStorage.getItem("isAuth") || false;
       if (this.isAuth == false) {
         this.$router.push({ name: "Login" });
-      } else {
-        this.$router.push({ name: "Books" });
-      }
+      }else{
+        this.$router.push({ name: "Welcome" });
+      } 
     },
+
     loadLogin: function() {
       this.$router.push({ name: "Login" });
     },
+
     loadSignUp: function() {
-      this.$router.push({ name: "Singup" });
+      this.$router.push({ name: "SignUp" });
     },
+
     loadWelcome: function() {
       this.$router.push({ name: "Welcome" });
     },
+
+    loadProfile: function() {
+      this.$router.push({ name: "Profile" });
+    },
+
     loadBookdetailS: function() {
       this.$router.push({ name: "Bookdetails" });
     },
+
     loadBookdetailR: function() {
       this.$router.push({ name: "Bookdetailr" });
     },
+
     logOut: function() {
-      this.verifyActive();
+      localStorage.clear();
+      this.verifyAuth();
       this.$router.push({ name: "Login" });
     },
-    completedLogin: function() {
+
+    completedLogin: function(data) {
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("tokenRefresh", data.token_refresh);    
+      localStorage.setItem("tokenAccess", data.token_access);        
+      localStorage.setItem("isAuth", true);
+      localStorage.setItem("idUser", jwt_decode(localStorage.getItem("tokenRefresh")).user_id);
+      this.verifyAuth();
+      alert("Ingreso existoso");
+      this.$router.push({ name: "Welcome" });
     },
-    completedSignUp: function() {
-      alert("Registro exitoso")
+
+    completedSignUp: function(data) {
+      alert("Registro exitoso");
+      this.completedLogin(data);
     },
+
     created: function() {
       this.verifyAuth();
     },
-
   }
-  
 }
 </script>
 
@@ -128,6 +152,7 @@ export default {
   width: 40px;
 }
 #logo h3{
+  cursor: pointer;
   margin: 0%;
   text-align: initial;
   padding: 5% 0% 5% 0;
