@@ -28,32 +28,60 @@
 </template>
 
 <script>
+  import gql from "graphql-tag";
+
   export default {
     name: 'Welcome',
     
     data:function(){
         return {
-            isActive : false,
+            userDetailById: {
+                rol: "",
+            }          
         };
     }, 
-    components : {},
-
+ 
     methods: {  
         loadBookS: function() {
             this.$router.push({ name: "Books" });
-            },
+        },
         loadBookR: function() {
             this.$router.push({ name: "Bookr" });
-            },
+        },
         loadBookH: function() {
             this.$router.push({ name: "Bhistory" });
-            },        
+        },        
         loadProfile: function() {
             this.$router.push({ name: "Profile" });
+        },
+
+        loadRol: function() {
+            localStorage.setItem("rol", this.userDetailById.rol)
+        }
+    },
+    
+    apollo: {
+        userDetailById:{
+            query: gql`
+                query Query($idUser: Int!) {
+                    userDetailById(idUser: $idUser) {                       
+                        rol
+                    }
+                }
+            `,
+
+            variables(){
+                return {
+                    idUser: parseInt(localStorage.getItem("idUser"))
+                };
+            }
+        }
     },
 
-        }      
+    created: function(){
+        this.loadRol();
     }
+}
 </script>
 
 <style>

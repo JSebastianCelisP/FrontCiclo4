@@ -1,7 +1,8 @@
 <template>
     <main id="main">
       <div id="search">
-        <input type="search" placeholder="search your next book">
+        <input type="search" placeholder="search your next book" v-model="title">
+        <button v-on:click="loadBookS(bookSDetailByTitle.idBookS)">search</button>
       </div>
 
       <div id="bookC">
@@ -25,13 +26,24 @@ export default {
 
   data: function(){
     return{
-      booksSList: []
+      booksSList: [],
+
+      bookSDetailByTitle: {
+        idBookS    : 0,
+      },
+
+      title: ""
     }
   },
 
   methods:{
     loadBookS: function(id){
-      this.$emit("loadBookdetailS", id);
+      if(id != 0){
+        this.$emit("loadBookdetailS", id);
+      }
+      else{
+        alert("book not found")
+      }
     }
   },
 
@@ -46,7 +58,7 @@ export default {
             units
             author
             description
-            price
+            price            
           }
         }
       `,
@@ -56,8 +68,31 @@ export default {
           idUser: parseInt(localStorage.getItem("idUser")),
         };
       }
+    },
+
+    bookSDetailByTitle: {
+      query: gql`
+        query Query($title: String!, $idUser: Int!) {
+          bookSDetailByTitle(title: $title, idUser: $idUser) {
+            idBookS
+            bookCover
+            title
+            units
+            author
+            description
+            price
+          }
+        }
+      `,
+
+      variables(){
+        return{
+          title : this.title,
+          idUser: parseInt(localStorage.getItem("idUser")),
+        }
+      }
     }
-  }
+  },  
 }
 </script>
 
@@ -76,6 +111,14 @@ export default {
     padding: 0px 30px;
     font-size: 20px;
     border-radius: 30px;
+  }
+
+  #search button{
+    margin: 20px 40% 0px 40%;
+    padding: 0px 30px;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
   }
 
   #bookC .card-p{

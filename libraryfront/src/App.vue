@@ -21,10 +21,12 @@
   </header>    
   <div id="content">
     <router-view
-      v-on:completedLogin="completedLogin"
+      v-on:completedLogin ="completedLogin"
       v-on:completedSignUp="completedSignUp"
+      v-on:loadWelcome    ="loadWelcome"
       v-on:loadBookdetailS="loadBookdetailS"
-      v-on:logOut="logOut"
+      v-on:loadBookdetailR="loadBookdetailR"
+      v-on:logOut         ="logOut"
     >
     </router-view>
   </div>
@@ -68,11 +70,11 @@ export default {
     },
 
     loadBookdetailS: function(id) {
-      this.$router.push({path:'/bookdetails/' + id});
+      this.$router.push({ path:'/bookdetails/' + id });
     },
 
-    loadBookdetailR: function() {
-      this.$router.push({ name: "Bookdetailr" });
+    loadBookdetailR: function(id) {
+      this.$router.push({ path:'/Bookdetailr/' + id });
     },
 
     logOut: function() {
