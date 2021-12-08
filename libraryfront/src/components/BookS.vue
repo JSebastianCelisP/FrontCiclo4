@@ -3,77 +3,14 @@
       <div id="search">
         <input type="search" placeholder="search your next book">
       </div>
+
       <div id="bookC">
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-                <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
-          </div>
-        </div>
-        <div class="card-p">
-          <div class="card-img">
-            <img src="../assets/Sira.webp" alt="Sira">
-          </div>
-          <div class="card-info">
-            <h3>Author: Author</h3>
-            <button>BUY NOW!</button>
+        <div class="card-p">          
+          <div v-for="item in booksSList" v-bind:key="item" class="card-info">
+            <img class="card-img" src="{{item.cover}}" alt="Sira">
+            <h3>{{item.title}}</h3>
+            <h3>Author: {{item.author}}</h3>
+            <button v-on:click="loadBookS(item.idBookS)">BUY NOW!</button>
           </div>
         </div>
       </div>
@@ -81,8 +18,46 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
+
 export default {
   name: 'BookS',
+
+  data: function(){
+    return{
+      booksSList: []
+    }
+  },
+
+  methods:{
+    loadBookS: function(id){
+      this.$emit("loadBookdetailS", id);
+    }
+  },
+
+  apollo: {
+    booksSList: {
+      query: gql`
+        query Query($idUser: Int!) {
+          booksSList(idUser: $idUser) {
+            idBookS
+            bookCover
+            title
+            units
+            author
+            description
+            price
+          }
+        }
+      `,
+      
+      variables(){
+        return{
+          idUser: parseInt(localStorage.getItem("idUser")),
+        };
+      }
+    }
+  }
 }
 </script>
 

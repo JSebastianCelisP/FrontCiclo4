@@ -54,6 +54,7 @@ export default {
         })
 
         .catch((error) => {
+          console.log(error)
           alert("ERROR 401: Invalid credentials.");
         });
     }

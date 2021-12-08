@@ -23,6 +23,7 @@
     <router-view
       v-on:completedLogin="completedLogin"
       v-on:completedSignUp="completedSignUp"
+      v-on:loadBookdetailS="loadBookdetailS"
       v-on:logOut="logOut"
     >
     </router-view>
@@ -39,23 +40,17 @@ import jwt_decode from "jwt-decode";
 export default { 
   name: "App",
 
-  data:function(){
-    return {
-      isAuth : false,
-    };
-  }, 
-  components : {},
-
-  methods: {
-    verifyAuth: function() {
-      this.isAuth = localStorage.getItem("isAuth") || false;
-      if (this.isAuth == false) {
-        this.$router.push({ name: "Login" });
-      }else{
-        this.$router.push({ name: "Welcome" });
-      } 
+  computed: {
+    isAuth: {
+      get: function() {
+    return this.$route.meta.requiresAuth;
     },
 
+    set: function() { }
+    }
+  },
+
+  methods: {
     loadLogin: function() {
       this.$router.push({ name: "Login" });
     },
@@ -72,8 +67,8 @@ export default {
       this.$router.push({ name: "Profile" });
     },
 
-    loadBookdetailS: function() {
-      this.$router.push({ name: "Bookdetails" });
+    loadBookdetailS: function(id) {
+      this.$router.push({path:'/bookdetails/' + id});
     },
 
     loadBookdetailR: function() {
@@ -82,28 +77,22 @@ export default {
 
     logOut: function() {
       localStorage.clear();
-      this.verifyAuth();
-      this.$router.push({ name: "Login" });
+      alert("closed session")
+      this.loadLogin();
     },
 
     completedLogin: function(data) {
       localStorage.setItem("email", data.email);
       localStorage.setItem("tokenRefresh", data.token_refresh);    
       localStorage.setItem("tokenAccess", data.token_access);        
-      localStorage.setItem("isAuth", true);
       localStorage.setItem("idUser", jwt_decode(localStorage.getItem("tokenRefresh")).user_id);
-      this.verifyAuth();
-      alert("Ingreso existoso");
-      this.$router.push({ name: "Welcome" });
+      alert("successful login");
+      this.loadWelcome();
     },
 
     completedSignUp: function(data) {
-      alert("Registro exitoso");
+      alert("Successful sign up");
       this.completedLogin(data);
-    },
-
-    created: function() {
-      this.verifyAuth();
     },
   }
 }
