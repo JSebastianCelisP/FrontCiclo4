@@ -93,6 +93,11 @@ export default {
       }
     }
   },  
+
+  created: function(){
+    this.$apollo.queries.booksSList.refetch();
+    this.$apollo.queries.bookSDetailByTitle.refetch()
+  }
 }
 </script>
 

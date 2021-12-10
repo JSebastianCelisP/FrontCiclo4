@@ -53,7 +53,6 @@ export default {
                 })
 
                 .then((result) => {
-                    console.log(result)
                     let dataSignUp = {
                         email: this.user.email,
                         token_access: result.data.signUpUser.access,
@@ -62,8 +61,13 @@ export default {
                     this.$emit("completedSignUp", dataSignUp);
                 })
                   
-                .catch((error) => {              
-                    alert("ERROR: failed to create user.");    
+                .catch((error) => {   
+                    if(error.message == "400: Bad Request"){
+                      alert("enter a valid email\nthe username or email may already exist");  
+                    }
+                    else{           
+                      alert("ERROR: failed to create user.");
+                    }    
                 });
         }
         else{

@@ -80,6 +80,7 @@
 
     created: function(){
         this.loadRol();
+        this.$apollo.queries.userDetailById.refetch();
     }
 }
 </script>

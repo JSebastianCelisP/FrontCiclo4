@@ -47,7 +47,7 @@ export default {
         price      : 0
       },
 
-      updateBook: {
+      updateBookData: {
         idBookS    : 0,
         bookCover  : "",
         title      : "",
@@ -112,7 +112,18 @@ export default {
         })
 
         .catch((error) => {
-          alert("ERROR: .");
+          if (error.message == "409: Conflict"){
+            alert("Insufficient balance");
+          }
+          else if (error.message == "300: Multiple Choices"){
+            alert("Transaction id already exists.\nplease try again");
+          }
+          else if (error.message == "303: See Other"){
+            alert("Not enough units in stock");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -134,7 +145,7 @@ export default {
           `,
 
           variables: {
-            updateBook: this.updateBook,
+            updateBook: this.updateBookData,
             idUser    : parseInt(localStorage.getItem("idUser"))
           }
         })
@@ -144,7 +155,12 @@ export default {
         })
 
         .catch((error) => {
-          alert("ERROR: .");
+          if (error.message == "404: Not Found"){
+            alert("Book not found");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -170,10 +186,14 @@ export default {
         .then((result) => {
           alert(result.data.deleteBookS.toString())
           this.$router.push({ name: "Books" });
-          alert("Press f5 or reload the page");
          })
          .catch((error) => {
-          alert("ERROR 401: .");
+          if (error.message == "404: Not Found"){
+            alert("Book not found");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -212,6 +232,7 @@ export default {
   created: function(){
     this.veryfyIsAdmin();
     this.randomNumber();
+    this.$apollo.queries.bookSDetailById.refetch();
   }
 }
 </script>

@@ -108,9 +108,16 @@ export default {
           alert("successful rental")
         })
 
-        .catch((error) => {
-          console.log(error)
-          alert("ERROR: .");
+        .catch((error) => {         
+          if (error.message == "300: Multiple Choices"){
+            alert("Transaction id already exists.\nplease try again");
+          }
+          else if (error.message == "409: Conflict"){
+            alert("Not enough units in stock");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -141,7 +148,12 @@ export default {
         })
 
         .catch((error) => {
-          alert("ERROR: .");
+          if (error.message == "404: Not Found"){
+            alert("Book not found");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -165,14 +177,16 @@ export default {
         })
         
         .then((result) => {
-          console.log(result)
-          alert(result.data.deleteBookR)
+          alert(result.data.deleteBookR.toString())
           this.$router.push({ name: "Bookr" });
-          alert("Press f5 or reload the page");
          })
          .catch((error) => {
-           console.log(error)
-          alert("ERROR 401: .");
+          if (error.message == "404: Not Found"){
+            alert("Book not found");
+          }
+          else{
+            alert("An error has occurred with the server.\nplease try again later")
+          }
         });
     },
 
@@ -210,6 +224,7 @@ export default {
   created: function(){
     this.veryfyIsAdmin();
     this.randomNumber();
+    this.$apollo.queries.bookRDetailById.refetch();
   }
 }
 </script>

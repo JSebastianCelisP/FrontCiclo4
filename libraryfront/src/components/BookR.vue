@@ -86,6 +86,11 @@ export default {
       }
     }
   },
+
+  created: function(){
+    this.$apollo.queries.booksRList.refetch();
+    this.$apollo.queries.bookRDetailByTitle.refetch()
+  }
 }
 </script>
 
