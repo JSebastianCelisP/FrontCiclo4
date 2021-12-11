@@ -87,9 +87,7 @@ export default {
               if (error.message == "409: Conflict"){
                 alert("Book id already exists.\nPlease try again");
               }
-              else{
-                alert("An error has occurred with the server.\nplease try again later")
-              }
+              console.log(error)
             });
         },
     },

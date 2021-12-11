@@ -48,7 +48,7 @@ export default {
       },
 
       updateBookData: {
-        idBookS    : 0,
+        idBookS    : parseInt(this.$route.params.id),
         bookCover  : "",
         title      : "",
         units      : 0,

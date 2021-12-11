@@ -55,7 +55,6 @@ export default {
   data: function(){
     return{
       userDetailById: {
-        username: "",
         nombre  : "",
         email   : "",
       },
@@ -142,6 +141,7 @@ export default {
           userDetailById(idUser: $idUser) {           
             nombre
             email
+            rol
           }
         }
       `,

@@ -2,7 +2,7 @@
     <main id="main">
       <div id="search">
         <input type="search" placeholder="search your next book" v-model="title">
-        <button v-on:click="loadBookR(bookRDetailByTitle.idBookR)">search</button>
+        <button v-on:click="searchBookR">search</button>
         <button v-if="isAdmin" v-on:click="createBook">CREATE BOOK</button>
       </div>
       <div id="bookC">
@@ -53,6 +53,15 @@ export default {
     loadBookR: function(id){
       if(id != 0){
         this.$emit("loadBookdetailR", id);
+      }
+      else{
+        alert("book not found")
+      }
+    },
+
+    searchBookR: function(){
+      if(this.bookRDetailByTitle != null){
+        this.$emit("loadBookdetailR", this.bookRDetailByTitle.idBookR);
       }
       else{
         alert("book not found")

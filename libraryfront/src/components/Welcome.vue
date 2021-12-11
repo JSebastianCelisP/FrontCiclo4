@@ -78,9 +78,9 @@
         }
     },
 
-    created: function(){
-        this.loadRol();
+    created: function(){     
         this.$apollo.queries.userDetailById.refetch();
+        this.loadRol();
     }
 }
 </script>

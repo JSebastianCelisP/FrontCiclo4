@@ -125,7 +125,8 @@ export default {
       query: gql`
         query Query($idUser: Int!) {
           userDetailById(idUser: $idUser) {                  
-            username                      
+            username
+            rol                      
           }
         }
       `,

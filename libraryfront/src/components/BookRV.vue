@@ -46,7 +46,7 @@ export default {
       },
 
       updateBookData: {
-        idBookR    : 0,
+        idBookR    : parseInt(this.$route.params.id),
         bookCover  : "",
         title      : "",
         units      : 0,
@@ -179,7 +179,7 @@ export default {
         })
         
         .then((result) => {
-          alert(result.data.deleteBookR.toString())
+          alert("successful deletion")
           this.$router.push({ name: "Bookr" });
          })
          .catch((error) => {
