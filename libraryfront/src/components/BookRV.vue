@@ -45,7 +45,7 @@ export default {
         description: "",
       },
 
-      updateBook: {
+      updateBookData: {
         idBookR    : 0,
         bookCover  : "",
         title      : "",
@@ -104,8 +104,8 @@ export default {
         })
 
         .then((result) => {
-          console.log(result)
           alert("successful rental")
+          this.$emit("loadHistory")
         })
 
         .catch((error) => {         
@@ -118,6 +118,8 @@ export default {
           else{
             alert("An error has occurred with the server.\nplease try again later")
           }
+
+          console.log(error)
         });
     },
 
@@ -138,7 +140,7 @@ export default {
           `,
 
           variables: {
-            updateBook: this.updateBook,
+            updateBook: this.updateBookData,
             idUser    : parseInt(localStorage.getItem("idUser"))
           }
         })

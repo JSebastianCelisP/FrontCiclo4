@@ -26,6 +26,9 @@
       v-on:loadWelcome    ="loadWelcome"
       v-on:loadBookdetailS="loadBookdetailS"
       v-on:loadBookdetailR="loadBookdetailR"
+      v-on:loadCreateBookS="loadCreateBookS"
+      v-on:loadCreateBookR="loadCreateBookR"
+      v-on:loadHistory    ="loadHistory"
       v-on:logOut         ="logOut"
     >
     </router-view>
@@ -69,12 +72,24 @@ export default {
       this.$router.push({ name: "Profile" });
     },
 
+    loadHistory: function() {
+      this.$router.push({ name: 'Bhistory'});
+    },
+
     loadBookdetailS: function(id) {
       this.$router.push({ path:'/bookdetails/' + id });
     },
 
     loadBookdetailR: function(id) {
       this.$router.push({ path:'/Bookdetailr/' + id });
+    },
+
+    loadCreateBookS: function(){
+      this.$router.push({ name: 'Createbooks'})
+    },
+
+    loadCreateBookR: function(){
+      this.$router.push({ name: 'Createbookr'})
     },
 
     logOut: function() {

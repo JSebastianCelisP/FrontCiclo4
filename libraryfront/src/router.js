@@ -2,16 +2,18 @@ import gql from "graphql-tag";
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 
-import App from './App'
-import Login from './components/LogIn.vue'
-import Signup from './components/SignUp.vue'
-import Welcome from './components/Welcome.vue'
-import Profile from './components/Profile.vue'
-import Bhistory from './components/BHistory.vue'
-import Books from './components/BookS.vue'
-import Bookr from './components/BookR.vue'
+import App         from './App'
+import Login       from './components/LogIn.vue'
+import Signup      from './components/SignUp.vue'
+import Welcome     from './components/Welcome.vue'
+import Profile     from './components/Profile.vue'
+import Bhistory    from './components/BHistory.vue'
+import Books       from './components/BookS.vue'
+import Bookr       from './components/BookR.vue'
 import Bookdetails from './components/BookSV.vue'
 import Bookdetailr from './components/BookRV.vue'
+import Createbooks from './components/newBookS.vue'
+import Createbookr from './components/newBookR.vue'
 
 const routes = [
   {
@@ -73,6 +75,18 @@ const routes = [
     path: '/bookdetailr/:id',
     name: 'Bookdetailr',
     component: Bookdetailr,
+    meta: { requiresAuth : true }
+  },
+  {
+    path: '/createbooks',
+    name: 'Createbooks',
+    component: Createbooks,
+    meta: { requiresAuth : true }
+  },
+  {
+    path: '/createbookr',
+    name: 'Createbookr',
+    component: Createbookr,
     meta: { requiresAuth : true }
   },
 ]

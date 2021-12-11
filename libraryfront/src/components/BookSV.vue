@@ -109,6 +109,7 @@ export default {
 
         .then((result) => {
           alert("successful purchase")
+          this.$emit("loadHistory")
         })
 
         .catch((error) => {

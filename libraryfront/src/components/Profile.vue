@@ -7,7 +7,6 @@
                 <input type="text" name="email" id="email" placeholder="E-MAIL" autocomplete="off" v-model="updateUser.email">
                 <input type="password" name="pass" placeholder="PASSWORD" autocomplete="off" v-model="updateUser.password">
                 <input type="password" name="passC" placeholder= "CONFIRM PASSWORD" v-model="confirmPassword">
-                <button class="editar" type="button">EDIT</button>
                 <button type="submit" class="editar">CONFIRM</button>
                 <button v-on:click="confirmDeletion" type="button" class="borrar">DELETE ACCOUNT</button>
             </div>

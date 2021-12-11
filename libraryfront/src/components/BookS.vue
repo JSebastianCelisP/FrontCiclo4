@@ -3,12 +3,13 @@
       <div id="search">
         <input type="search" placeholder="search your next book" v-model="title">
         <button v-on:click="loadBookS(bookSDetailByTitle.idBookS)">search</button>
+        <button v-if="isAdmin" v-on:click="createBook">CREATE BOOK</button>
       </div>
 
       <div id="bookC">
         <div class="card-p">          
           <div v-for="item in booksSList" v-bind:key="item" class="card-info">
-            <img class="card-img" src="{{item.cover}}" alt="Sira">
+            <img class="card-img" src="'../assets' + {{item.cover}} + '.webp'" alt="Cover">
             <h3>{{item.title}}</h3>
             <h3>Author: {{item.author}}</h3>
             <button v-on:click="loadBookS(item.idBookS)">BUY NOW!</button>
@@ -32,11 +33,23 @@ export default {
         idBookS    : 0,
       },
 
-      title: ""
+      title: "",
+
+      rol    : localStorage.getItem("rol").toString(),
+      isAdmin: false
     }
   },
 
   methods:{
+    veryfyIsAdmin: function(){
+      if(this.rol === "Admin"){
+        this.isAdmin = true
+      }
+      else{
+        this.isAdmin = false
+      }
+    },
+
     loadBookS: function(id){
       if(id != 0){
         this.$emit("loadBookdetailS", id);
@@ -44,6 +57,10 @@ export default {
       else{
         alert("book not found")
       }
+    },
+
+    createBook: function(){
+      this.$emit("loadCreateBookS")
     }
   },
 
@@ -95,6 +112,7 @@ export default {
   },  
 
   created: function(){
+    this.veryfyIsAdmin();
     this.$apollo.queries.booksSList.refetch();
     this.$apollo.queries.bookSDetailByTitle.refetch()
   }

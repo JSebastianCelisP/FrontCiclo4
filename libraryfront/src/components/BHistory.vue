@@ -1,5 +1,49 @@
 <template>
-    
+    <main>
+        <div class="title">
+            <h2>Your history</h2>
+        </div>
+        <div class="shopping">
+            <table>
+                <caption>Shopping history</caption>
+                <thead>
+                    <tr class="title-table">
+                        <th>Date</th> 
+                        <th>Book</th>
+                        <th>Count</th>
+                        <th> Total price </th>
+                    </tr>
+                </thead>
+                <tbody v-for="item in getPurchaseTransactions" v-bind:key="item">
+                    <tr>
+                        <td>{{item.date.substring(0,10)}}</td>
+                        <td>{{item.nameBookS}}</td>
+                        <td>{{item.count}}</td>
+                        <td>{{item.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="rental">
+            <table>
+                <caption>Rental history</caption>
+                <thead class="title-table">
+                    <tr>
+                        <th>Date</th> 
+                        <th>Book</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody v-for="item in getRentalTransactions" v-bind:key="item">
+                    <tr>
+                        <td>{{item.date.substring(0,10)}}</td>
+                        <td>{{item.nameBookR}}</td>
+                        <td>{{item.count}}</td>                     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -24,105 +68,15 @@ export default {
         count: 0,
       },
 
+      
+
       getPurchaseTransactions: [],
 
-      getRentalTransactions  : [],
-
-      bookRental: {
-        idBookR    : 0,
-        bookCover  : "",
-        title      : "",
-        units      : 0,
-        author     : "",
-        description: ""
-      },
-
-      bookPurchase: {
-        idBookR    : 0,
-        bookCover  : "",
-        title      : "",
-        units      : 0,
-        author     : "",
-        description: "",
-        price: 0
-      },
+      getRentalTransactions  : [],   
     }
   },
 
   methods: {
-    createBookPurchase: async function(){
-      await this.$apollo
-        .mutate({
-          mutation: gql`
-            mutation Mutation($book: bookSInput!, $idUser: Int!) {
-              createBookS(book: $book, idUser: $idUser) {
-                idBookS
-                bookCover
-                title
-                units
-                author
-                description
-                price
-              }
-            }
-          `,
-
-          variables:{
-            idUser: parseInt(localStorage.getItem("idUser")),
-            book  : this.bookPurchase,
-          }
-        })
-
-        .then((result) => {
-          alert("Successful creation")
-        })
-
-        .catch((error) => {
-          if (error.message == "409: Conflict"){
-            alert("Book id already exists.\nPlease try again");
-          }
-          else{
-            alert("An error has occurred with the server.\nplease try again later")
-          }
-        });
-    },
-
-    createBookRental: async function(){
-      await this.$apollo
-        .mutate({
-          mutation: gql`
-            mutation Mutation($book: bookSInput!, $idUser: Int!) {
-              createBookR(book: $book, idUser: $idUser) {
-                idBookR
-                bookCover
-                title
-                units
-                author
-                description
-              }
-            }
-          `,
-
-          variables:{
-            idUser: parseInt(localStorage.getItem("idUser")),
-            book  : this.bookRental,
-          }
-        })
-
-        .then((result) => {
-          alert("Successful creation")
-        })
-
-        .catch((error) => {         
-          if (error.message == "409: Conflict"){
-            alert("Book id already exists.\nPlease try again");
-          }
-          else{
-            alert("An error has occurred with the server.\nplease try again later")
-          }
-        });
-    },
-
     deletePurchaseTransaction: async function(){
       await this.$apollo
         .mutate({
@@ -185,12 +139,9 @@ export default {
     userDetailById:{
       query: gql`
         query Query($idUser: Int!) {
-          userDetailById(idUser: $idUser) {
-            id
-            username
+          userDetailById(idUser: $idUser) {           
             nombre
             email
-            rol
           }
         }
       `,
@@ -289,5 +240,69 @@ export default {
 </script>
 
 <style> 
-
+  @font-face {
+  font-family: "Baskerville Old Face";
+  src: url(../fonts/BaskervilleOldFaceV2.ttf) format('truetype');
+  }
+  * {
+  margin: 0;
+  padding: 0;
+  font-family: "Baskerville Old Face";
+  font-weight: 100;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  }
+  .title {
+      grid-area: title;
+      margin: 2%;
+      text-align: center;
+  }
+  .shopping{
+      grid-area: shopping;
+      margin: auto;
+  }
+  .rental{
+      grid-area: rental;
+      margin: auto;
+  }
+  main{
+      display: grid;
+      grid-template-areas: 
+      "title title"
+      "shopping rental";
+  }
+  table{
+      margin-top: 15%;
+      width: auto;
+      /* border-spacing: 2px; */
+      border: 1px solid rgb(88, 3, 3);
+      padding: 1%;
+      border-radius: 0px 0px 5px 5px;
+  }
+  caption{
+      font-size: larger;
+      background-color: black;
+      border-radius: 5px 5px 0px 0px;
+      color: white;
+  }
+  thead th{
+      width: 30%;
+      padding: 1%;
+      background-color: rgb(92, 6, 6);
+      color: white;
+      /* line-height: 30px; */
+  }
+  tbody td{
+      width: 30%;
+      margin: 5%;
+      padding: 2%;
+      background-color: rgb(170, 175, 173);
+      text-align: center;
+  }
+  h2{
+      font-size: 40px;
+  }
 </style>

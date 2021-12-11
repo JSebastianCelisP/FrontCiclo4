@@ -3,6 +3,7 @@
       <div id="search">
         <input type="search" placeholder="search your next book" v-model="title">
         <button v-on:click="loadBookR(bookRDetailByTitle.idBookR)">search</button>
+        <button v-if="isAdmin" v-on:click="createBook">CREATE BOOK</button>
       </div>
       <div id="bookC">
         <div class="card-p">
@@ -32,11 +33,23 @@ export default {
         idBookR    : 0,
       },
 
-      title: ""
+      title: "",
+
+      rol    : localStorage.getItem("rol").toString(),
+      isAdmin: false
     }
   },
 
   methods:{
+    veryfyIsAdmin: function(){
+      if(this.rol === "Admin"){
+        this.isAdmin = true
+      }
+      else{
+        this.isAdmin = false
+      }
+    },
+
     loadBookR: function(id){
       if(id != 0){
         this.$emit("loadBookdetailR", id);
@@ -45,6 +58,10 @@ export default {
         alert("book not found")
       }
     },
+
+    createBook: function(){
+      this.$emit("loadCreateBookR")
+    }
   },
 
   apollo: {
@@ -88,6 +105,7 @@ export default {
   },
 
   created: function(){
+    this.veryfyIsAdmin();
     this.$apollo.queries.booksRList.refetch();
     this.$apollo.queries.bookRDetailByTitle.refetch()
   }
