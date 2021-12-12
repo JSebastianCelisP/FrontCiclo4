@@ -4,10 +4,9 @@
       <div id="info-port">
         <h2 class="title">¡BUY NOW!</h2>
         <h2 class="title-name">"{{bookSDetailById.title}}"</h2>
-        <img class="port" src="{{bookSDetailById.bookCover}}" alt="cover">
+        <img :src="getImg(bookSDetailById.bookCover)" :alt="bookSDetailById.bookCover">
         <article class="data">
           <h3><b>Author: </b>{{bookSDetailById.author}}</h3>
-          <h3 v-if="isAdmin"><b>cover: </b>{{bookSDetailById.bookCover}}</h3>
           <h3><b>Price: </b>{{bookSDetailById.price}}</h3>
           <h3><b>Available: </b>{{bookSDetailById.units}}</h3>
           <br><br><br><br>
@@ -82,6 +81,11 @@ export default {
       var aleatorio = Math.random() * (1000000);
       aleatorio = Math.floor(aleatorio);
       this.transactionData.id = aleatorio
+      console.log(this.bookSDetailById.bookCover)
+    },
+
+    getImg: function(img){
+      return require('../assets/' + img + '.webp')
     },
 
     createTransaction: async function(){
@@ -278,9 +282,7 @@ export default {
     "title title title"
     "title-name title-name title-name"
     "port port data"
-
   }
-
 
   .data > h3{
     font-size: 30px;

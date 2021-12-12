@@ -12,7 +12,8 @@
       <div id="bookC">
         <div class="card-p">          
           <div v-for="item in booksSList" v-bind:key="item" class="card-info">
-            <img class="card-img" src="'../assets' + {{item.cover}} + '.webp'" alt="Cover">
+            <img class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">
+            
             <h3>{{item.title}}</h3>
             <h3>Author: {{item.author}}</h3>
             <button v-on:click="loadBookS(item.idBookS)">BUY NOW!</button>
@@ -60,6 +61,10 @@ export default {
       else{
         alert("book not found")
       }
+    },
+
+    getImg: function(img){
+      return require('../assets/' + img + '.webp')
     },
 
     searchBookS: function(){
