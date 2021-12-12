@@ -1,7 +1,7 @@
 <template>
-    <main id="newbooks">
+    <main id="newbook">
         <h1>New Book For Sale</h1>   
-        <form class="newRegistre">
+        <form id="newRegistre">
             <label for=""></label>
             <label for="">TITLE</label>
             <input type="text" placeholder="Book title" v-model="bookS.title">

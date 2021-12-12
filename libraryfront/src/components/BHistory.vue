@@ -1,7 +1,7 @@
 <template>
     <main id="bhistory">
         <div class="title">
-            <h2>{{nombre}}Your history</h2>
+            <h2>{{userDetailById.nombre}} your history</h2>
         </div>
         <div class="shopping">
             <table>

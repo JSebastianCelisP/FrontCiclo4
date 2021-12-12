@@ -2,8 +2,12 @@
     <main id="main">
       <div id="search">
         <input type="search" placeholder="search your next book" v-model="title">
-        <button v-on:click="searchBookR">search</button>
-        <button v-if="isAdmin" v-on:click="createBook">CREATE BOOK</button>
+      </div>
+      <div class="buttonSearch">
+        <button v-on:click="searchBookR">search</button>   
+      </div>
+      <div class="buttonCreate">
+        <button v-if="isAdmin" v-on:click="createBook">create book</button>
       </div>
       <div id="bookC">
         <div class="card-p">

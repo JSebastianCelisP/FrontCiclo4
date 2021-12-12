@@ -1,5 +1,5 @@
 <template>
-    <main id="newbookr">
+    <main id="newbook">
         <h1>New Book For Rent</h1>   
             <form id="newRegistre">
                 <label for=""></label>
@@ -96,6 +96,11 @@ export default {
 </script>
 
 <style>
+    #newbook h1 {
+      text-align: center;
+      font-size: 60px;
+      margin: auto;
+    }
     #newRegistre {
         padding: 5%;
         display: grid;

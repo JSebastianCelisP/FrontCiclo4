@@ -1,11 +1,14 @@
 <template>
     <main id="main">
       <div id="search">
-        <input type="search" placeholder="search your next book" v-model="title">
-        <button v-on:click="searchBookS">search</button>
-        <button v-if="isAdmin" v-on:click="createBook">CREATE BOOK</button>
+        <input type="search" placeholder="search your next book" v-model="title"> 
       </div>
-
+      <div class="buttonSearch">
+        <button v-on:click="searchBookS">search</button>   
+      </div>
+      <div class="buttonCreate">
+        <button v-if="isAdmin" v-on:click="createBook">create book</button>
+      </div>   
       <div id="bookC">
         <div class="card-p">          
           <div v-for="item in booksSList" v-bind:key="item" class="card-info">
@@ -129,6 +132,9 @@ export default {
 </script>
 
 <style>
+  #main{
+    min-height: 550px;
+  }
 
   #bookC{
     display: flex;
@@ -145,12 +151,24 @@ export default {
     border-radius: 30px;
   }
 
-  #search button{
+  .buttonSearch button{
     margin: 20px 40% 0px 40%;
-    padding: 0px 30px;
+    padding: 0px 40px;
     font-size: 20px;
     border-radius: 30px;
     cursor: pointer;
+    position: relative;
+    bottom: 47px; left: 300px;
+  }
+
+  .buttonCreate button{
+    margin: 20px 40% 0px 40%;
+    padding: 0px 40px;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    bottom: 94px; right: 220px;
   }
 
   #bookC .card-p{

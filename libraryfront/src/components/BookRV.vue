@@ -11,11 +11,11 @@
           <h3><b>Available: </b>{{bookRDetailById.units}}</h3>
           <br><br><br><br>
           <h3>
-            <b>Rent:</b>
-            <input type="number" min="1" max="3" name="count" id="count" placeholder="0" v-model="transactionData.count">
+            <b v-if="!isAdmin">Rent:</b>
+            <input v-if="!isAdmin" type="number" min="1" max="3" name="count" id="count" placeholder="0" v-model="transactionData.count">
             <button v-if="!isAdmin" v-on:click="createTransaction" type="submit" class="submit">RENT NOW</button>
-            <button v-if="isAdmin" v-on:click="editBook" type="submit" class="submit">EDIT BOOK</button>
-            <button v-if="isAdmin" v-on:click="updateBook" type="submit" class="submit">SAVE EDIT</button>
+            <!--<button v-if="isAdmin" v-on:click="editBook" type="submit" class="submit">EDIT BOOK</button>
+            <button v-if="isAdmin" v-on:click="updateBook" type="submit" class="submit">SAVE EDIT</button>-->
             <button v-if="isAdmin" v-on:click="confirmDeletion" type="submit" class="submit">DELETE BOOK</button>
           </h3>
         </article>
