@@ -9,9 +9,14 @@
 </head>
 
 <body>
-    <main>
+    <main id="bhistory">
         <div class="title">
-            <h2>Your history</h2>
+            <h2>{{userDetailById.nombre}} your history</h2>
+        </div>
+        <div class="h-data">
+            <textarea name="" id="" cols="20" rows="1" readonly>Email</textarea>
+            <textarea name="" id="" cols="20" rows="1" readonly>Saldo</textarea>
+            <textarea name="" id="" cols="20" rows="1" readonly>Libros rentados</textarea>
         </div>
         <div class="shopping">
             <table>
@@ -24,12 +29,12 @@
                         <th> Total price </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-for="item in getPurchaseTransactions" v-bind:key="item">
                     <tr>
-                        <td>09/12/2021</td>
-                        <td>Alicia en el pais de las maravillas</td>
-                        <td>1</td>
-                        <td>$20.000</td>
+                        <td>{{item.date.substring(0,10)}}</td>
+                        <td>{{item.nameBookS}}</td>
+                        <td>{{item.count}}</td>
+                        <td>{{item.value}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,16 +49,17 @@
                         <th>Count</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-for="item in getRentalTransactions" v-bind:key="item">
                     <tr>
-                        <td>09/12/2021</td>
-                        <td>Alicia en el pais de las maravillas</td>
-                        <td>2</td>
+                        <td>{{item.date.substring(0,10)}}</td>
+                        <td>{{item.nameBookR}}</td>
+                        <td>{{item.count}}</td>                     
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
+
 </body>
 
 </html>
@@ -87,10 +93,15 @@
         grid-area: rental;
         margin: auto;
     }
+    .h-data{
+        grid-area: h-data;
+        margin: auto;
+    }
     main{
         display: grid;
         grid-template-areas: 
         "title title"
+        "h-data h-data"
         "shopping rental";
     }
     table{
@@ -125,6 +136,15 @@
     }
     h2{
         font-size: 40px;
+    }
+    .h-data textarea{
+        resize: none;
+        border-radius: 10px;
+        text-align: center;
+        margin: 10px;
+        font-size: larger;
+        /* border: none; */
+        font-style: oblique;
     }
 
 </style>

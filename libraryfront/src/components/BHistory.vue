@@ -3,6 +3,11 @@
         <div class="title">
             <h2>{{userDetailById.nombre}} your history</h2>
         </div>
+        <div class="h-data">
+          <textarea name="" id="" cols="20" rows="1" readonly>Email</textarea>
+          <textarea name="" id="" cols="20" rows="1" readonly>Saldo</textarea>
+          <textarea name="" id="" cols="20" rows="1" readonly>Libros rentados</textarea>
+        </div>
         <div class="shopping">
             <table>
                 <caption>Shopping history</caption>
@@ -256,10 +261,15 @@ export default {
       grid-area: rental;
       margin: auto;
   }
+  .h-data{
+      grid-area: h-data;
+      margin: auto;
+  }
   .bhistory{
       display: grid;
       grid-template-areas: 
       "title title"
+      "h-data h-data"
       "shopping rental";
   }
   table{
@@ -290,7 +300,16 @@ export default {
       background-color: rgb(170, 175, 173);
       text-align: center;
   }
-  h2{
+  .title h2{
       font-size: 40px;
   }
+  .h-data textarea{
+        resize: none;
+        border-radius: 10px;
+        text-align: center;
+        margin: 10px;
+        font-size: larger;
+        /* border: none; */
+        font-style: oblique;
+    }
 </style>
