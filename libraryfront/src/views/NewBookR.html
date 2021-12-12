@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,20 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <main id="newbookr">
         <h1>New Book For Rent</h1>   
-            <form class="newRegistre">
+            <form id="newRegistre">
                 <label for=""></label>
                 <label for="">TITLE</label>
-                <input type="text" placeholder="Book title" v-model="bookS.title">
+                <input type="text" placeholder="Book title" v-model="bookR.title">
                 <label for="">AUTHOR</label>
-                <input type="text" placeholder="Book author" v-model="bookS.author">
+                <input type="text" placeholder="Book author" v-model="bookR.author">
                 <label for="">UNITS</label>
-                <input type="number" name="units" min="0" max="999" placeholder="999" v-model="bookS.units">
+                <input type="number" name="units" min="0" max="999" placeholder="999" v-model="bookR.units">
                 <label for="">DESCRIPTION</label>
-                <textarea name="" id="description" cols="58" rows="10" v-model="bookS.description"></textarea>
+                <textarea name="" id="description" cols="58" rows="10" v-model="bookR.description"></textarea>
                 <label for="">COVER</label>
-                <input type="text" placeholder="Cover image name (without the .webp extension)" v-model="bookS.cover">
+                <input type="text" placeholder="Cover image name (without the .webp extension)" v-model="bookR.bookCover">
                 <label for="">COVER FILE</label>
                 <input type="file" accept=".webp">
                 <button class="guardarB" v-on:click="confirmInsertion">CREATE</button>
@@ -46,7 +46,7 @@
     text-decoration: none;
     text-align: center;
     }
-    form {
+    #newRegistre {
         padding: 5%;
         display: grid;
         grid-template-rows: 1fr 1fr;
@@ -54,28 +54,14 @@
         margin: 0px 20%;
     }
 
-    form div{
-        display: grid;
-        grid-template-rows: auto;
-        border-radius: 20px;
-        padding: 5%;
-        border-style: dotted;
-        border-color: black;
-    }
-
-    .img {
-        margin: auto;
-        padding-bottom: 20px;
-    }
-
-    form input,button, h3{
+    #newRegistre input, #newRegistre button,#newRegistre h3{
         text-align: center;
         border-radius: 50px;
         margin: 10px 10%;
         padding: 2%;
         }
 
-    form button{
+    #newRegistre button{
         padding: 2%;
         margin: auto;
     }
@@ -91,16 +77,16 @@
         font-size: 20px;
         margin: auto;
     }
-    label{
+    #newRegistre label{
         margin-top: 10px ;
         margin-bottom: -3px;
     }
-    button {
+    #newRegistre button {
         border: none;
         font-size: larger;
         background-color: rgb(149, 246, 209);
     }
-    button:hover{
+    #newRegistre button:hover{
         cursor: pointer;
       background-color: rgb(3, 112, 70);
       color: white;

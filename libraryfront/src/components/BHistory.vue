@@ -1,7 +1,7 @@
 <template>
-    <main>
+    <main id="bhistory">
         <div class="title">
-            <h2>Your history</h2>
+            <h2>{{nombre}}Your history</h2>
         </div>
         <div class="shopping">
             <table>
@@ -240,20 +240,8 @@ export default {
 </script>
 
 <style> 
-  @font-face {
-  font-family: "Baskerville Old Face";
-  src: url(../fonts/BaskervilleOldFaceV2.ttf) format('truetype');
-  }
-  * {
-  margin: 0;
-  padding: 0;
-  font-family: "Baskerville Old Face";
-  font-weight: 100;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
+  .bhistory{
+    min-height: 550px;
   }
   .title {
       grid-area: title;
@@ -268,7 +256,7 @@ export default {
       grid-area: rental;
       margin: auto;
   }
-  main{
+  .bhistory{
       display: grid;
       grid-template-areas: 
       "title title"
