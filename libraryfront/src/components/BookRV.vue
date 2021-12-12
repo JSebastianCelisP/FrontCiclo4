@@ -7,7 +7,6 @@
         <img :src="getImg(bookRDetailById.bookCover)" :alt="bookRDetailById.bookCover">
         <article class="data">
           <h3><b>Author: </b>{{bookRDetailById.author}}</h3>
-          <h3 v-if="isAdmin"><b>cover: </b>{{bookRDetailById.bookCover}}</h3>
           <h3><b>Available: </b>{{bookRDetailById.units}}</h3>
           <br><br><br><br>
           <h3>

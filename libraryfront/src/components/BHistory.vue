@@ -4,9 +4,8 @@
             <h2>{{userDetailById.nombre}} your history</h2>
         </div>
         <div class="h-data">
-          <textarea name="" id="" cols="20" rows="1" readonly>Email</textarea>
-          <textarea name="" id="" cols="20" rows="1" readonly>Saldo</textarea>
-          <textarea name="" id="" cols="20" rows="1" readonly>Libros rentados</textarea>
+          <textarea name="" id="" cols="20" rows="1" readonly v-model="accountPurchaseById.balance"></textarea>
+          <textarea name="" id="" cols="20" rows="1" readonly v-model="accountRentalById.count"></textarea>
         </div>
         <div class="shopping">
             <table>
@@ -265,12 +264,17 @@ export default {
       grid-area: h-data;
       margin: auto;
   }
-  .bhistory{
+  #bhistory{
       display: grid;
       grid-template-areas: 
       "title title"
       "h-data h-data"
       "shopping rental";
+  }
+
+  .h-data label {
+     position: relative;
+     bottom: 45px; left: 145px; 
   }
   table{
       margin-top: 15%;
@@ -300,16 +304,16 @@ export default {
       background-color: rgb(170, 175, 173);
       text-align: center;
   }
-  .title h2{
+  h2{
       font-size: 40px;
   }
   .h-data textarea{
-        resize: none;
-        border-radius: 10px;
-        text-align: center;
-        margin: 10px;
-        font-size: larger;
-        /* border: none; */
-        font-style: oblique;
-    }
+      resize: none;
+      border-radius: 10px;
+      text-align: center;
+      margin: 10px;
+      font-size: larger;
+      /* border: none; */
+      font-style: oblique;
+  }
 </style>

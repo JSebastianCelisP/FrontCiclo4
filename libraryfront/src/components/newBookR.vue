@@ -133,6 +133,7 @@ export default {
         margin: auto;
     }
     #newRegistre label{
+        text-align: center;
         margin-top: 10px ;
         margin-bottom: -3px;
     }

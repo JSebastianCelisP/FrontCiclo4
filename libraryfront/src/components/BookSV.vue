@@ -244,20 +244,19 @@ export default {
 
 <style>
   #bookV{
-    height: 550px;
-}
-  #info-main{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+      height: 550px;
   }
-
-  .title{
-    grid-area: title;
-    font-size: 55px;
-    text-align: center;
-    margin: auto;
-    color: brown;
-}
+    #info-main{
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+    }
+    .title{
+      grid-area: title;
+      font-size: 55px;
+      text-align: center;
+      margin: auto;
+      color: brown;
+  }
   .title-name{
     grid-area: title-name;
     font-size: 40px;
@@ -268,22 +267,21 @@ export default {
     grid-area: port;
   margin-left: 45%;
   }
-
   .data{
     grid-area: data;
     margin-left: -15%;
     margin-top: 10%;
   }
-
   #info-port{
     display: grid;
     height: 550px;
     grid-template-areas: 
     "title title title"
     "title-name title-name title-name"
+    "title-name title-name title-name"
     "port port data"
-  }
 
+  }
   .data > h3{
     font-size: 30px;
   }
@@ -301,7 +299,6 @@ export default {
     outline: none;
     background-color: cornflowerblue;
   }
-
   .submit{
     cursor: pointer;
     background-color: rgb(149, 246, 209);
@@ -314,7 +311,6 @@ export default {
     box-shadow: 5px 5px 5px black;
     transition: all 0.2s ease-in;
   }
-
   #synopsis{
     background-color: rgba(246, 128, 128, 0.787);
     padding: 10%;
@@ -325,11 +321,8 @@ export default {
     font-size: 30px;
     font-weight: 600;
   }
-
   #synopsis p{
     font-family: sans-serif;
     text-align: justify;
   }
-  
-
 </style>
