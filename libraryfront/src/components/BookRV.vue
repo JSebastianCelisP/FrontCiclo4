@@ -4,7 +4,7 @@
       <div id="info-port">
         <h2 class="title-r">RENT IT FOR A WEEK</h2>
         <h2 class="title-name">{{bookRDetailById.title}}</h2>
-        <img class="port" src="{{BookRDetailById.bookCover}}" alt="cover">
+        <img :src="getImg(bookRDetailById.bookCover)" :alt="bookRDetailById.bookCover">
         <article class="data">
           <h3><b>Author: </b>{{bookRDetailById.author}}</h3>
           <h3 v-if="isAdmin"><b>cover: </b>{{bookRDetailById.bookCover}}</h3>
@@ -79,6 +79,10 @@ export default {
       var aleatorio = Math.random() * (1000000);
       aleatorio = Math.floor(aleatorio);
       this.transactionData.id = aleatorio
+    },
+
+    getImg: function(img){
+      return require('../assets/' + img + '.webp')
     },
     
     createTransaction: async function(){

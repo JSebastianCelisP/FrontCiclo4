@@ -12,7 +12,7 @@
       <div id="bookC">
         <div class="card-p">
           <div v-for="item in booksRList" v-bind:key="item" class="card-info">
-            <img class="card-img" src="{{item.cover}}" alt="Sira">
+            <img class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">
             <h3>{{item.title}}</h3>
             <h3>Author: {{item.author}}</h3>
             <button v-on:click="loadBookR(item.idBookR)">RENT NOW!</button>
@@ -74,7 +74,11 @@ export default {
 
     createBook: function(){
       this.$emit("loadCreateBookR")
-    }
+    },
+
+    getImg: function(img){
+      return require('../assets/' + img + '.webp')
+    },
   },
 
   apollo: {

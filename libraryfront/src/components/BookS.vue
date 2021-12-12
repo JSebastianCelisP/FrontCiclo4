@@ -63,10 +63,6 @@ export default {
       }
     },
 
-    getImg: function(img){
-      return require('../assets/' + img + '.webp')
-    },
-
     searchBookS: function(){
       if(this.bookSDetailByTitle != null){
         this.$emit("loadBookdetailS", this.bookSDetailByTitle.idBookS);
@@ -78,7 +74,11 @@ export default {
 
     createBook: function(){
       this.$emit("loadCreateBookS")
-    }
+    },
+
+    getImg: function(img){
+      return require('../assets/' + img + '.webp')
+    },
   },
 
   apollo: {
