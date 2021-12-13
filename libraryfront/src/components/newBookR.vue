@@ -75,7 +75,7 @@ export default {
       
               .then((result) => {
                 alert("Successful creation")
-                this.$router.push({ name: "Bookr" });
+                this.$router.push({ name: "Welcome" });
               })
       
               .catch((error) => {         

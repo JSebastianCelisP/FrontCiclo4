@@ -10,12 +10,11 @@
         <button v-if="isAdmin" v-on:click="createBook">create book</button>
       </div>   
       <div id="bookC">
-        <div class="card-p">          
-          <div v-for="item in booksSList" v-bind:key="item" class="card-info">
-            <img class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">
-            
-            <h3>{{item.title}}</h3>
-            <h3>Author: {{item.author}}</h3>
+        <div class="card-p" v-for="item in booksSList" v-bind:key="item">          
+          <div class="card-info">
+            <img v-on:click="loadBookS(item.idBookS)" class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">           
+            <h3>{{item.title.substring(0,24)}}</h3>
+            <h3>A: {{item.author.substring(0,24)}}</h3>
             <button v-on:click="loadBookS(item.idBookS)">BUY NOW!</button>
           </div>
         </div>
@@ -151,6 +150,7 @@ export default {
 
   #search input{
     margin: 20px 40% 0px 40%;
+    margin-bottom: -3cm;
     padding: 0px 30px;
     font-size: 20px;
     border-radius: 30px;
@@ -158,6 +158,7 @@ export default {
 
   .buttonSearch button{
     margin: 20px 40% 0px 40%;
+    margin-bottom: -3cm;
     padding: 0px 40px;
     font-size: 20px;
     border-radius: 30px;
@@ -168,6 +169,7 @@ export default {
 
   .buttonCreate button{
     margin: 20px 40% 0px 40%;
+    margin-bottom: -3cm;
     padding: 0px 40px;
     font-size: 20px;
     border-radius: 30px;
@@ -183,6 +185,10 @@ export default {
    }
   #bookC .card-p .card-img{
     background-color: black;
+  }
+  #bookC .card-img{
+    height: 318.989px;
+    width : 200px;
   }
   #bookC .card-p .card-info{
     display: flex;

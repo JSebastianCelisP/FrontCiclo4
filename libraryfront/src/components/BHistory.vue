@@ -3,6 +3,8 @@
         <div class="title">
             <h2>{{userDetailById.nombre}} your history</h2>
         </div>
+        <label class="balanceL balanceL-c" for="">Balance</label>
+        <label class="countL countL-c" for="">Rented books</label>
         <div class="h-data">
           <textarea name="" id="" cols="20" rows="1" readonly v-model="accountPurchaseById.balance"></textarea>
           <textarea name="" id="" cols="20" rows="1" readonly v-model="accountRentalById.count"></textarea>
@@ -15,7 +17,7 @@
                         <th>Date</th> 
                         <th>Book</th>
                         <th>Count</th>
-                        <th> Total price </th>
+                        <th>Total price</th>
                     </tr>
                 </thead>
                 <tbody v-for="item in getPurchaseTransactions" v-bind:key="item">
@@ -244,7 +246,7 @@ export default {
 </script>
 
 <style> 
-  .bhistory{
+  #bhistory{
     min-height: 550px;
   }
   .title {
@@ -252,13 +254,22 @@ export default {
       margin: 2%;
       text-align: center;
   }
+
+  .balanceL{
+    grid-area: balanceL;
+    margin: auto;
+  }
+  .countL{
+    grid-area: countL;
+    margin: auto;
+  }
   .shopping{
       grid-area: shopping;
-      margin: auto;
+      margin: 5px auto;
   }
   .rental{
       grid-area: rental;
-      margin: auto;
+      margin: 5px auto;
   }
   .h-data{
       grid-area: h-data;
@@ -268,6 +279,7 @@ export default {
       display: grid;
       grid-template-areas: 
       "title title"
+      "balanceL countL"
       "h-data h-data"
       "shopping rental";
   }
@@ -315,5 +327,11 @@ export default {
       font-size: larger;
       /* border: none; */
       font-style: oblique;
+  }
+  .balanceL-c{
+    margin-left: 500px;
+  }
+  .countL-c{
+    margin-right: 500px;
   }
 </style>

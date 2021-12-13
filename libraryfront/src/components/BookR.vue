@@ -10,11 +10,11 @@
         <button v-if="isAdmin" v-on:click="createBook">create book</button>
       </div>
       <div id="bookC">
-        <div class="card-p">
-          <div v-for="item in booksRList" v-bind:key="item" class="card-info">
-            <img class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">
-            <h3>{{item.title}}</h3>
-            <h3>Author: {{item.author}}</h3>
+        <div class="card-p" v-for="item in booksRList" v-bind:key="item">
+          <div class="card-info">
+            <img v-on:click="loadBookR(item.idBookR)" class="card-img" :src="getImg(item.bookCover)" :alt="item.bookCover">
+            <h3>{{item.title.substring(0,24)}}</h3>
+            <h3>A: {{item.author.substring(0,24)}}</h3>
             <button v-on:click="loadBookR(item.idBookR)">RENT NOW!</button>
           </div>
         </div>

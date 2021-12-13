@@ -80,7 +80,7 @@ export default {
 
             .then((result) => {
               alert("Successful creation")
-              this.$router.push({ name: "Books" });
+              this.$router.push({ name: "Welcome" });
             })
 
             .catch((error) => {

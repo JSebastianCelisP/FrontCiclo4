@@ -4,7 +4,7 @@
       <div id="info-port">
         <h2 class="title-r">RENT IT FOR A WEEK</h2>
         <h2 class="title-name">{{bookRDetailById.title}}</h2>
-        <img :src="getImg(bookRDetailById.bookCover)" :alt="bookRDetailById.bookCover">
+        <img class="port" :src="getImg(bookRDetailById.bookCover)" :alt="bookRDetailById.bookCover">
         <article class="data">
           <h3><b>Author: </b>{{bookRDetailById.author}}</h3>
           <h3><b>Available: </b>{{bookRDetailById.units}}</h3>

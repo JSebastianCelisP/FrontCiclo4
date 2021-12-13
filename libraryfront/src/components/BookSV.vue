@@ -4,7 +4,7 @@
       <div id="info-port">
         <h2 class="title">¡BUY NOW!</h2>
         <h2 class="title-name">"{{bookSDetailById.title}}"</h2>
-        <img :src="getImg(bookSDetailById.bookCover)" :alt="bookSDetailById.bookCover">
+        <img class="port" :src="getImg(bookSDetailById.bookCover)" :alt="bookSDetailById.bookCover">
         <article class="data">
           <h3><b>Author: </b>{{bookSDetailById.author}}</h3>
           <h3><b>Price: </b>{{bookSDetailById.price}}</h3>
